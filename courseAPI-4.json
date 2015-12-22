@@ -1,0 +1,404 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "Course API",
+        "description": "API for the course micro-service",
+        "version": "1.0.0"
+    },
+    "host": "52.88.84.35:80",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/courses/<cid>/enrolledstudents": {
+            "get": {
+                "summary": "Enrolled Students",
+                "description": "A list of students enrolled in the course is returned.\n",
+                "responses": {
+                    "200": {
+                        "description": "The list of enrolled students.",
+                        "schema": {
+                            "$ref": "#/definitions/GetStudents"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/<cid>/enrollednumber": {
+            "get": {
+                "summary": "Enrolled Students",
+                "description": "A number object is returned.\n",
+                "responses": {
+                    "200": {
+                        "description": "The number of enrolled students.",
+                        "schema": {
+                            "$ref": "#/definitions/GetNumber"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/<cid>/info": {
+            "get": {
+                "summary": "Course Information",
+                "description": "A course's information is returned.\n",
+                "responses": {
+                    "200": {
+                        "description": "The course info object.",
+                        "schema": {
+                            "$ref": "#/definitions/GetInfo"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/<cid>/student": {
+            "post": {
+                "summary": "Add Student",
+                "description": "The student registers for the course.\n",
+                "parameters": [
+                    {
+                        "name": "sid",
+                        "in": "body",
+                        "description": "The student sid.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/courses/<cid>/student/<sid>": {
+            "delete": {
+                "summary": "Drop Student",
+                "description": "The student deregisters for the course.\n",
+                "parameters": [
+                    {
+                        "name": "sid",
+                        "in": "body",
+                        "description": "The student sid.",
+                        "required": true,
+                        "type": "number",
+                        "format": "integer"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/dropall/<sid>": {
+            "delete": {
+                "summary": "Drop All Students",
+                "description": "The student is removed from any registration pair.\n",
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/course/<cid>": {
+            "post": {
+                "summary": "Create Course",
+                "description": "The course is created and added to the service.\n",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "body",
+                        "description": "The courses's name.",
+                        "required": true,
+                        "type": "text",
+                        "format": "String"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Course",
+                "description": "The course is deleted and removed from the service.\n",
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update Course",
+                "description": "The course information is updated.\n",
+                "parameters": [
+                    {
+                        "name": "Column_Name",
+                        "in": "body",
+                        "description": "The name of the column to be updated.",
+                        "required": true,
+                        "type": "Column_Type",
+                        "format": "Column_Type_Format"
+                    },
+                    {
+                        "name": "...",
+                        "in": "body",
+                        "description": "The name of the column to be updated.",
+                        "type": "Column_Type",
+                        "required": false,
+                        "format": "Column_Type_Format"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/column": {
+            "post": {
+                "summary": "Add Column",
+                "description": "A column is added to the database.\n",
+                "parameters": [
+                    {
+                        "name": "table_name",
+                        "in": "body",
+                        "description": "The table's name.",
+                        "required": true,
+                        "type": "text",
+                        "format": "String"
+                    },
+                    {
+                        "name": "column_name",
+                        "in": "body",
+                        "description": "The column's name.",
+                        "required": true,
+                        "type": "text",
+                        "format": "String"
+                    },
+                    {
+                        "name": "column_type",
+                        "in": "body",
+                        "description": "The column's data type.",
+                        "required": true,
+                        "type": "text",
+                        "format": "String"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Delete Column",
+                "description": "A column is removed from the database.\n",
+                "parameters": [
+                    {
+                        "name": "table_name",
+                        "in": "body",
+                        "description": "The table's name.",
+                        "required": true,
+                        "type": "text",
+                        "format": "String"
+                    },
+                    {
+                        "name": "column_name",
+                        "in": "body",
+                        "description": "The column's name.",
+                        "required": true,
+                        "type": "text",
+                        "format": "String"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Status"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        },
+        "/log": {
+            "get": {
+                "summary": "Log",
+                "description": "The log is returned.\n",
+                "responses": {
+                    "200": {
+                        "description": "The response code of the service.",
+                        "schema": {
+                            "$ref": "#/definitions/Log"
+                        }
+                    },
+                    "Other": {
+                        "description": "Handled by Apache Tomcat.",
+                        "schema": {
+                            "$ref": "#/definitions/HTTP_Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Status": {
+            "type": "object",
+            "description": "The response status",
+            "properties": {
+                "status": {
+                    "type": "int",
+                    "description": "1: Success, 0: Failure, -1: Resource not found, -2: Duplicate"
+                }
+            }
+        },
+        "HTTP_Response": {
+            "type": "text",
+            "description": "The body of the HTTP response"
+        },
+        "GetStudents": {
+            "type": "object",
+            "description": "The student list object",
+            "properties": {
+                "sid": {
+                    "type": "string"
+                },
+                "...": {
+                    "type": "..."
+                }
+            }
+        },
+        "GetNumber": {
+            "type": "object",
+            "description": "The student number object",
+            "properties": {
+                "number": {
+                    "type": "int"
+                }
+            }
+        },
+        "GetInfo": {
+            "type": "object",
+            "description": "The student info object",
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "...": {
+                    "type": "..."
+                }
+            }
+        },
+        "Log": {
+            "type": "object",
+            "description": "The log object",
+            "properties": {
+                "Column_Name": {
+                    "type": "string"
+                },
+                "...": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
